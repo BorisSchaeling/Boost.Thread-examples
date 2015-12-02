@@ -1,5 +1,6 @@
 // uses a future to detect when the thread created with async() has terminated;
 // the program exits when it is done (no need to press CTRL+C)
+#define BOOST_THREAD_VERSION 4
 #include <boost/asio.hpp>
 #include <boost/thread.hpp>
 #include <string>
@@ -36,7 +37,7 @@ void get_robotstxt(const std::string &host)
 int main()
 {
 	// async() returns a future ...
-	boost::unique_future<void> f = boost::async(std::bind(get_robotstxt, "theboostcpplibraries.com"));
+	boost::future<void> f = boost::async(std::bind(get_robotstxt, "theboostcpplibraries.com"));
 	// ... which provides a member function is_ready(); is_ready() returns true
 	// when the thread has terminated
 	while (!f.is_ready())
