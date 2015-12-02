@@ -1,0 +1,8 @@
+using boost : 1.59 : <include>C:/Boost/include/boost-1_59 <library>C:/Boost/lib ;
+import boost ;
+boost.use-project ;
+project : requirements <source>/boost//headers <library>/boost//thread <library>/boost//system <library>/boost//chrono <link>static <target-os>windows:<define>_WIN32_WINNT=0x0601 ;
+for file in [ glob *.cpp ]
+{
+  exe $(file:B) : $(file) ;
+}
